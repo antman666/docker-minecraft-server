@@ -39,21 +39,21 @@ jobs:
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java21
-            baseImage: eclipse-temurin:21-jre
+            baseImage: azul/zulu-openjdk:21-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java21-jdk
-            baseImage: eclipse-temurin:21
+            baseImage: azul/zulu-openjdk:21
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java21-alpine
-            baseImage: eclipse-temurin:21-jre-alpine
+            baseImage: azul/zulu-openjdk-alpine:21-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
         # JAVA 17:
           - variant: java17
             # jammy doesn't work until minecraft updates to https://github.com/netty/netty/issues/12343
-            baseImage: eclipse-temurin:17-jre-focal
+            baseImage: azul/zulu-openjdk:17-jre
             platforms: linux/amd64,linux/arm/v7,linux/arm64
             mcVersion: 1.20.4
           - variant: java17-graalvm
@@ -61,12 +61,12 @@ jobs:
             platforms: linux/amd64,linux/arm64
             mcVersion: 1.20.4
           - variant: java17-alpine
-            baseImage: eclipse-temurin:17-jre-alpine
+            baseImage: azul/zulu-openjdk-alpine:17-jre
             platforms: linux/amd64
             mcVersion: 1.20.4
         # JAVA 11:
           - variant: java11
-            baseImage: adoptopenjdk:11-jre-hotspot
+            baseImage: azul/zulu-openjdk:11-jre
             platforms: linux/amd64,linux/arm/v7,linux/arm64
             mcVersion: 1.16.5
         # JAVA 8: NOTE: Unable to go past 8u312 because of Forge dependencies
@@ -155,14 +155,7 @@ jobs:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
         run: |
           tests/test.sh
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3.3.0
-        if: env.HAS_IMAGE_REPO_ACCESS
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
+  
       - name: Login to GHCR
         uses: docker/login-action@v3.3.0
         if: env.HAS_IMAGE_REPO_ACCESS
