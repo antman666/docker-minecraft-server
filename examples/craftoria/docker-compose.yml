@@ -7,15 +7,24 @@ services:
       - "25565:25565"
     environment:
       EULA: true
+      ALLOW_FLIGHT: true
       MOD_PLATFORM: AUTO_CURSEFORGE
       # allocate from https://console.curseforge.com/ and set in .env file
       CF_API_KEY: ${CF_API_KEY}
-      CF_SLUG: all-the-mods-10
-      # Optional: select a specific version/file
-      # CF_FILENAME_MATCHER: "1.17"
-      MEMORY: 4G
-      CF_OVERRIDES_EXCLUSIONS: |
-        shaderpacks/**
+      CF_SLUG: craftoria
+      MEMORY: 8G
+      CF_EXCLUDE_MODS: |
+        737481
+        363363
+        394468
+        986380
+        844662
+        568563
+        915902
+        690971
+        455508
+        1089803
+        511319
     volumes:
       # Use managed volume by default, but can change to a relative path like
       # ./data:/data

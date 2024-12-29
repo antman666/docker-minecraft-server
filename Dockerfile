@@ -50,7 +50,7 @@ RUN easy-add --var os=${TARGETOS} --var arch=${TARGETARCH}${TARGETVARIANT} \
   --var version=${MC_SERVER_RUNNER_VERSION} --var app=mc-server-runner --file {{.app}} \
   --from ${GITHUB_BASEURL}/itzg/{{.app}}/releases/download/{{.version}}/{{.app}}_{{.version}}_{{.os}}_{{.arch}}.tar.gz
 
-ARG MC_HELPER_VERSION=1.40.4
+ARG MC_HELPER_VERSION=1.40.6
 ARG MC_HELPER_BASE_URL=${GITHUB_BASEURL}/itzg/mc-image-helper/releases/download/${MC_HELPER_VERSION}
 # used for cache busting local copy of mc-image-helper
 ARG MC_HELPER_REV=1
@@ -64,7 +64,7 @@ WORKDIR /data
 STOPSIGNAL SIGTERM
 
 # End user MUST set EULA and change RCON_PASSWORD
-ENV TYPE=VANILLA VERSION=LATEST EULA="" UID=1000 GID=1000
+ENV TYPE=VANILLA VERSION=LATEST EULA="" UID=1000 GID=1000 LC_ALL=en_US.UTF-8
 
 COPY --chmod=755 scripts/start* /
 COPY --chmod=755 bin/ /usr/local/bin/

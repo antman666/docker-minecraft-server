@@ -1,10 +1,12 @@
 {
   "globalExcludes": [
+    "advancement-plaques",
     "ambience-music-mod",
     "ambientsounds",
     "appleskin",
     "armor-chroma",
     "armor-toughness-bar",
+    "audio-extension-for-fancymenu-forge",
     "auudio-forge",
     "beehivetooltips",
     "better-advancements",
@@ -26,6 +28,7 @@
     "controlling",
     "ctm",
     "custom-main-menu",
+    "dark-mode-everywhere",
     "defensive-measures",
     "ding",
     "drippy-loading-screen",
@@ -53,6 +56,7 @@
     "ftb-backups-2",
     "fullscreen-windowed-borderless-for-minecraft",
     "hwyla",
+    "iceberg",
     "ignitioncoil",
     "inmisaddon",
     "iris-flywheel-compat",
@@ -61,15 +65,18 @@
     "itemphysic-lite",
     "itemzoom",
     "just-enough-harvestcraft",
+    "just-enough-mekanism-multiblocks",
     "just-enough-resources-jer",
     "just-zoom",
     "konkrete",
     "legendary-tooltips",
+    "lighty",
     "loot-capacitor-tooltips",
     "lootbeams",
     "magnesium-extras",
     "menumobs",
     "minecraft-rich-presence",
+    "model-gap-fix",
     "more-overlays",
     "mouse-tweaks",
     "neat",
@@ -80,9 +87,11 @@
     "oculus",
     "oldjavawarning",
     "overloaded-armor-bar",
+    "packmenu",
     "packmodemenu",
     "reauth",
     "reblured",
+    "reeses-sodium-options",
     "reforgium",
     "resource-reloader",
     "rubidium",
@@ -98,6 +107,8 @@
     "smooth-font",
     "smoothwater",
     "sodium",
+    "sodium-extra",
+    "sodium-options-api",
     "sodium-rubidium-occlusion-culling-fix",
     "sound-filters",
     "sound-physics-remastered",
@@ -107,29 +118,26 @@
     "textrues-rubidium-options",
     "thaumic-jei",
     "tips",
+    "toast-control",
     "torohealth-damage-indicators",
     "true-darkness",
     "ungrab-mouse-mod",
     "vanillafix",
     "visuality",
     "waila-harvestability",
+    "xaeroplus",
+    "yungs-menu-tweaks",
     "zume"
   ],
   "modpacks": {
     "all-of-fabric-6": {
-      "forceIncludes": [
-        "revelationary"
-      ]
+      "forceIncludes": ["revelationary"]
     },
     "valhelsia-5": {
-      "excludes": [
-        "modernfix"
-      ]
+      "excludes": ["modernfix"]
     },
     "create-arcane-engineering": {
-      "forceIncludes": [
-        "just-enough-resources-jer"
-      ]
+      "forceIncludes": ["just-enough-resources-jer"]
     }
   }
 }
