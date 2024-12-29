@@ -2,12 +2,12 @@ name: Discord notifications
 
 on:
   release:
-    types:
-      - published
+    # types:
+      # - published
   workflow_run:
-    workflows: ["Build and Publish"]
-    types:
-      - completed
+    # workflows: ["Build and Publish"]
+    # types:
+      # - completed
 
 env:
   DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}

@@ -43,7 +43,7 @@ jobs:
           - variant: java17
             # jammy doesn't work until minecraft updates to https://github.com/netty/netty/issues/12343
             baseImage: azul/zulu-openjdk:17-jre
-            platforms: linux/amd64,linux/arm/v7,linux/arm64
+            platforms: linux/amd64,linux/arm64
             mcVersion: 1.20.4
           - variant: java17-graalvm
             baseImage: container-registry.oracle.com/graalvm/jdk:17-ol8
@@ -51,12 +51,12 @@ jobs:
             mcVersion: 1.20.4
           - variant: java17-alpine
             baseImage: azul/zulu-openjdk-alpine:17-jre
-            platforms: linux/amd64
+            platforms: linux/amd64,linux/arm64
             mcVersion: 1.20.4
         # JAVA 11:
           - variant: java11
             baseImage: azul/zulu-openjdk:11-jre
-            platforms: linux/amd64,linux/arm/v7,linux/arm64
+            platforms: linux/amd64,linux/arm64
             mcVersion: 1.16.5
         # JAVA 8: NOTE: Unable to go past 8u312 because of Forge dependencies
           - variant: java8
