@@ -26,6 +26,7 @@
     "clickable-advancements",
     "configured",
     "controlling",
+    "craftpresence",
     "ctm",
     "custom-main-menu",
     "dark-mode-everywhere",
@@ -44,6 +45,7 @@
     "entity-collision-fps-fix",
     "entity-texture-features-fabric",
     "entityculling",
+    "equipment-compare",
     "extreme-sound-muffler",
     "ezzoom",
     "fading-night-vision",
@@ -61,6 +63,8 @@
     "inmisaddon",
     "iris-flywheel-compat",
     "irisshaders",
+    "item-borders",
+    "item-highlighter",
     "item-obliterator",
     "itemphysic-lite",
     "itemzoom",
@@ -125,6 +129,7 @@
     "vanillafix",
     "visuality",
     "waila-harvestability",
+    "wawla",
     "xaeroplus",
     "yungs-menu-tweaks",
     "zume"
@@ -133,11 +138,18 @@
     "all-of-fabric-6": {
       "forceIncludes": ["revelationary"]
     },
-    "valhelsia-5": {
-      "excludes": ["modernfix"]
-    },
     "create-arcane-engineering": {
       "forceIncludes": ["just-enough-resources-jer"]
+    },
+    "skyfactory-5": {
+      "forceIncludes": [
+        "colored-torches",
+        "dye-mob-dye",
+        "openstairs"
+      ]
+    },
+    "valhelsia-5": {
+      "excludes": ["modernfix"]
     }
   }
 }
