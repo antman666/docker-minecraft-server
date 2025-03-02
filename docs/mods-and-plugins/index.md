@@ -23,7 +23,7 @@ The terms "mods" and "plugins" can be quite confusing. Generally, the rule of th
 There are optional volume paths that can be attached to supply content to be copied into the data area:
 
 `/plugins`
-: content in this directory is synchronized into `/data/plugins` for server types that use plugins, [as described above](#mods-vs-plugins). For special cases, the source can be changed by setting `COPY_PLUGINS_SRC` and destination by setting `COPY_PLUGINS_DEST`.
+: content in this directory is synchronized into `/data/plugins` for server types that use plugins, [as described above](#mods-vs-plugins). For special cases, the source can be changed by setting `COPY_PLUGINS_SRC` and destination by setting `COPY_PLUGINS_DEST`. If using a mod-based loader, such as Forge or Fabric, but a hybrid mod like [Cardboard](https://modrinth.com/mod/cardboard), then set `USES_PLUGINS` to have the automation utilize `/plugins` mount.
 
 `/mods`
 : content in this directory is synchronized into `/data/mods` for server types that use mods, [as described above](#mods-vs-plugins). For special cases, the source can be changed by setting `COPY_MODS_SRC` and destination by setting `COPY_MODS_DEST`.
@@ -78,9 +78,24 @@ If applying large generic packs, the update can be time-consuming. To skip the u
 
 The most time-consuming portion of the generic pack update is generating and comparing the SHA1 checksum. To skip the checksum generation, set `SKIP_GENERIC_PACK_CHECKSUM` to "true".
 
+To disable specific mods, which can be useful for conflicts between multiple generic packs, you can use the `GENERIC_PACKS_DISABLE_MODS` variable to specify mods to disable.
+
+Disabling mods with docker run:
+```shell
+docker run -d -e GENERIC_PACKS_DISABLE_MODS="mod1.jar mod2.jar" ...
+```
+
+Disabling mods within docker compose files:
+```yaml
+      GENERIC_PACKS_DISABLE_MODS: |
+        mod1.jar
+        mod2.jar
+```
+
 ## Mods/plugins list
 
 You may also download or copy over individual mods/plugins using the `MODS` or `PLUGINS` environment variables. Both are a comma or newline delimited list of
+
 - URL of a jar file
 - container path to a jar file
 - container path to a directory containing jar files
