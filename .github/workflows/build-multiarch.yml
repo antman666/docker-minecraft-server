@@ -11,10 +11,12 @@ jobs:
         variant:
           - java24
           - java24-graalvm
+          - java24-alpine
           - java21
           - java21-alpine
           - java21-graalvm
           - java21-jdk
+          - java21-alpine
           - java17
           - java17-graalvm
           - java17-alpine
@@ -23,13 +25,17 @@ jobs:
           - java8-openj9
           - java8-jdk
         include:
-        # JAVA 23
-          - variant: java23
-            baseImage: azul/zulu-openjdk:23-jre
+        # JAVA 24
+          - variant: java24
+            baseImage: azul/zulu-openjdk:24-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java24-graalvm
             baseImage: container-registry.oracle.com/graalvm/jdk:24-ol8
+            platforms: linux/amd64,linux/arm64
+            mcVersion: latest
+          - variant: java24-alpine
+            baseImage: azul/zulu-openjdk-alpine:24-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
         # JAVA 21:
