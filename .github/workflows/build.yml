@@ -9,9 +9,9 @@ jobs:
       matrix:
         # NOTE: the "latest" variant is identified in the Docker meta step's 'latest' config
         variant:
-          - java24
-          - java24-graalvm
-          - java24-alpine
+          - java25
+          - java25-jdk
+          - java25-alpine
           - java21
           - java21-alpine
           - java21-jdk
@@ -22,17 +22,17 @@ jobs:
           - java8
           - java8-jdk
         include:
-        # JAVA 24
-          - variant: java24
-            baseImage: azul/zulu-openjdk:24-jre
+        # JAVA 25
+          - variant: java25
+            baseImage: azul/zulu-openjdk:25-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java25-jdk
             baseImage: eclipse-temurin:25
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
-          - variant: java24-alpine
-            baseImage: azul/zulu-openjdk-alpine:24-jre
+          - variant: java25-alpine
+            baseImage: azul/zulu-openjdk-alpine:25-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
         # JAVA 21:
