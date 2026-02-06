@@ -24,14 +24,16 @@
     "cherishedworlds",
     "citresewn",
     "clickadv",
-    "cloth-config",
     "cobblemon-ui-tweaks",
     "compass-coords",
+    "colorwheel",
     "connectedness",
     "connector",
     "continuity",
     "controlling",
     "craftpresence",
+    "CrashAssistant",
+    "Cull Less Leaves",
     "cwb",
     "DisableCustomWorldsAdvice",
     "distraction_free_recipes",
@@ -71,11 +73,14 @@
     "loadmyresources",
     "lootbeams",
     "MindfulDarkness",
+    "miningspeedtooltips",
     "MouseTweaks",
     "nicer-skies",
     "notenoughanimations",
     "oculus",
+    "ok_zoomer",
     "OverflowingBars",
+    "particlerain",
     "PickUpNotifier",
     "PresenceFootsteps",
     "Prism",
@@ -104,5 +109,11 @@
     "zume"
   ],
   "globalForceIncludes": [],
-  "modpacks": {}
+  "modpacks": {
+    "cobbleverse": {
+      "excludes": [
+        "cloth-config"
+      ]
+    }
+  }
 }
