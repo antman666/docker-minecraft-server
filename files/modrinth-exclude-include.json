@@ -5,7 +5,6 @@
     "AmbientSounds",
     "amecs",
     "Animation_Overhaul",
-    "appleskin",
     "auudio",
     "axolotlbuckets",
     "BadOptimizations",
@@ -28,7 +27,6 @@
     "compass-coords",
     "colorwheel",
     "connectedness",
-    "connector",
     "continuity",
     "controlling",
     "craftpresence",
@@ -50,7 +48,6 @@
     "fancymenu",
     "fast-ip-ping",
     "fastquit",
-    "FauxCustomEntityData",
     "feytweaks",
     "figura",
     "ForgeConfigScreens",
@@ -58,6 +55,7 @@
     "gpumemleakfix",
     "Highlighter",
     "ImmediatelyFast",
+    "immersivedamageindicators",
     "indium",
     "inventory-profiles-next",
     "iris",
@@ -112,6 +110,9 @@
     "cobbleverse": {
       "excludes": [
         "cloth-config"
+      ],
+      "forceIncludes": [
+        "configurable"
       ]
     }
   }

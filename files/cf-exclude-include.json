@@ -82,6 +82,7 @@
     "iceberg",
     "ignitioncoil",
     "illager-raid-music",
+    "immersive-damage-indicators",
     "inmisaddon",
     "iris-flywheel-compat",
     "irisshaders",
@@ -212,6 +213,11 @@
     },
     "valhelsia-5": {
       "excludes": ["modernfix"]
+    },
+    "wolds-vaults": {
+      "forceIncludes": [
+        "just-enough-resources-jer"
+      ]
     }
   }
 }

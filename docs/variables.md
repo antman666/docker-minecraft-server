@@ -205,6 +205,12 @@ alternatively, you can mount: <code>/etc/localtime:/etc/localtime:ro
             <td>⬜️</td>
         </tr>
         <tr>
+            <td><code>HARDCORE</code></td>
+            <td>Enable hardcore mode. Set to <code>true</code> or <code>false</code>. This maps to the Minecraft server property <code>hardcore</code>.</td>
+            <td><code>false</code></td>
+            <td>⬜️</td>
+        </tr>
+        <tr>
             <td><code>ICON</code></td>
             <td>The url or file path for the icon image to use for the server. It will be downloaded, scaled, and converted to the proper format.</td>
             <td><code></code></td>
@@ -243,6 +249,12 @@ alternatively, you can mount: <code>/etc/localtime:/etc/localtime:ro
         <tr>
             <td><code>STOP_SERVER_ANNOUNCE_DELAY</code></td>
             <td>To allow time for players to finish what they're doing during a graceful server shutdown, set <code>STOP_SERVER_ANNOUNCE_DELAY</code> to a number of seconds to delay after an announcement is posted by the server.</td>
+            <td><code></code></td>
+            <td>⬜️</td>
+        </tr>
+        <tr>
+            <td><code>STOP_SERVER_DELAY_COMMAND</code></td>
+            <td>To set a custom command to run at the start of this delay period, set <code>STOP_SERVER_DELAY_COMMAND</code> to the full command. This will run in place of the announcement.</td>
             <td><code></code></td>
             <td>⬜️</td>
         </tr>
@@ -605,7 +617,7 @@ This image maps known server properties as described in [this section](configura
         </tr>
         <tr>
             <td><code>CF_FILENAME_MATCHER</code></td>
-            <td>Specify a substring to match the desired filename</td>
+            <td>Specify either a substring or a regex pattern surrounded with "/" to match the desired filename</td>
             <td><code></code></td>
             <td>⬜️</td>
         </tr>

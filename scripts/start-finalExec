@@ -3,6 +3,7 @@
 : "${DEBUG_EXEC:=false}"
 : "${SETUP_ONLY:=false}"
 : "${CUSTOM_JAR_EXEC:=}"
+: "${SERVER_RUNNER:=mc-server-runner}"
 
 # shellcheck source=start-utils
 . "$(dirname "$0")/start-utils"
@@ -96,7 +97,7 @@ fi
 if versionLessThan 1.7; then
   : # No patch required here.
 elif versionLessThan 1.18.1; then
-  if isTrue ${SKIP_LOG4J_PATCHER:-false}; then
+  if isTrue "${SKIP_LOG4J_PATCHER:-false}"; then
     log "Skipping Log4jPatcher, make sure you are not affected"
   else
     JVM_OPTS="-javaagent:/image/Log4jPatcher.jar ${JVM_OPTS}"
@@ -212,8 +213,11 @@ fi
 : "${USE_MEOWICE_FLAGS:=false}"
 : "${USE_MEOWICE_GRAALVM_FLAGS:=false}"
 
-if isTrue "${USE_MEOWICE_FLAGS}"; then
+if isTrue "${USE_MEOWICE_FLAGS}" || isTrue "${USE_MEOWICE_GRAALVM_FLAGS}"; then
   java_major_version=$(mc-image-helper java-release)
+fi
+
+if isTrue "${USE_MEOWICE_FLAGS}"; then
   if [[ $java_major_version -gt 16 ]]; then
     log "Java version $java_major_version using MeowIce's flags for Java 17+"
   else
@@ -342,6 +346,11 @@ if isTrue "${USE_MEOWICE_FLAGS}"; then
     "
   else
     log "cpu not x86_64, disabling architecture specific flags"
+  fi
+  if [[ $java_major_version -gt 23 ]]; then
+    JVM_XX_OPTS="${JVM_XX_OPTS}
+    -XX:+UseCompactObjectHeaders
+    "
   fi
 fi
 
@@ -481,6 +490,9 @@ fi
 if [[ ${STOP_SERVER_ANNOUNCE_DELAY} ]]; then
   mcServerRunnerArgs+=(--stop-server-announce-delay "${STOP_SERVER_ANNOUNCE_DELAY}s")
 fi
+if [[ ${STOP_SERVER_DELAY_COMMAND} ]]; then
+  mcServerRunnerArgs+=(--stop-server-delay-command "${STOP_SERVER_DELAY_COMMAND}")
+fi
 if isTrue "${ENABLE_SSH}"; then
   mcServerRunnerArgs+=(--remote-console)
 fi
@@ -493,7 +505,7 @@ if [[ ${TYPE} == "CURSEFORGE" && "${SERVER}" ]]; then
   if isTrue "${DEBUG_EXEC}"; then
     set -x
   fi
-  exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" java $JVM_XX_OPTS $JVM_OPTS $expandedDOpts -jar "$(basename "${SERVER}")" "$@" $EXTRA_ARGS
+  exec ${SERVER_RUNNER} ${bootstrapArgs} "${mcServerRunnerArgs[@]}" -- java $JVM_XX_OPTS $JVM_OPTS $expandedDOpts -jar "$(basename "${SERVER}")" "$@" $EXTRA_ARGS
 elif [[ ${TYPE} == "CURSEFORGE" ]]; then
   mcServerRunnerArgs+=(--shell bash)
 
@@ -547,18 +559,18 @@ fi
       JVM_ARGS=${JVM_ARGS//$'\n'/}
       sed -i "s~JAVA_ARGS=.*~JAVA_ARGS=\"${JVM_ARGS}\"~" "${FTB_DIR}/variables.txt"
   fi
-  exec mc-server-runner "${mcServerRunnerArgs[@]}" "${finalArgs[@]}"
+  exec ${SERVER_RUNNER} "${mcServerRunnerArgs[@]}" -- "${finalArgs[@]}"
 elif [[ $SERVER =~ run.sh ]]; then
   log "Using Forge supplied run.sh script..."
   echo $JVM_XX_OPTS $JVM_OPTS $expandedDOpts > user_jvm_args.txt
-  if isTrue ${SETUP_ONLY}; then
+  if isTrue "${SETUP_ONLY}"; then
     echo "SETUP_ONLY: bash ${SERVER}"
     exit
   fi
   if isTrue "${DEBUG_EXEC}"; then
     set -x
   fi
-  exec mc-server-runner "${mcServerRunnerArgs[@]}" --shell bash "${SERVER}" $EXTRA_ARGS
+  exec ${SERVER_RUNNER} "${mcServerRunnerArgs[@]}" --shell bash -- "${SERVER}" $EXTRA_ARGS
 else
   # If we have a bootstrap.txt file... feed that in to the server stdin
   if [ -f $bootstrapPath ]; then
@@ -587,7 +599,7 @@ else
     "$@" $EXTRA_ARGS
   )
 
-  if isTrue ${SETUP_ONLY}; then
+  if isTrue "${SETUP_ONLY}"; then
     echo "SETUP_ONLY: java ${finalArgs[*]}"
     exit
   fi
@@ -596,5 +608,5 @@ else
     set -x
   fi
 
-  exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" java "${finalArgs[@]}"
+  exec ${SERVER_RUNNER} ${bootstrapArgs} "${mcServerRunnerArgs[@]}" -- java "${finalArgs[@]}"
 fi
