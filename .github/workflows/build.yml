@@ -31,7 +31,7 @@ jobs:
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java25-alpine
-            baseImage: azul/zulu-openjdk-alpine:25-jre-alpine
+            baseImage: azul/zulu-openjdk-alpine:25-jre
             platforms: linux/amd64,linux/arm64
             mcVersion: latest
           - variant: java25-jdk
